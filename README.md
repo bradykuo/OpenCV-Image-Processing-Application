@@ -33,16 +33,23 @@ A PyQt5-based application for demonstrating image processing techniques using Op
 - 5.5. Image Classification Inference
 
 ## Requirements
-### Python Dependencies
+
+### Python Environment
 - Python 3.7
+
+### Core Dependencies
 - opencv-contrib-python (3.4.2.17)
 - Matplotlib 3.1.1
 - PyQt5 (5.15.1)
+
+### Deep Learning Dependencies
 - PyTorch
 - torchvision
+- torchsummary
+
+### Additional Dependencies
 - numpy
 - pillow
-- torchsummary
 
 ### Required Images
 #### Image Processing
@@ -56,6 +63,8 @@ A PyQt5-based application for demonstrating image processing techniques using Op
 - Any test images for inference (supports .jpg, .jpeg, .png)
 
 ## Installation and Setup
+
+### General Setup
 1. Clone the repository:
 ```bash
 git clone [your-repository-url]
@@ -65,20 +74,29 @@ cd [repository-name]
 2. Create virtual environment:
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Install dependencies:
+### Windows Setup
 ```bash
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Linux/Mac Setup
+```bash
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-### Basic Operation
+### 1. Image Processing Operations
+
+#### Basic Operation
 1. Run the application:
-bash
+```bash
 python main.py
+```
 
 2. Using the Interface:
    - Use "Load Image 1" for single image operations
@@ -86,34 +104,64 @@ python main.py
    - Click operation buttons to perform specific tasks
    - Use trackbars in popup windows to adjust parameters
    - Press 'Esc' to close popup windows
-     
-### Feature-Specific Operations
 
-#### Edge Detection
+#### Feature-Specific Operations
+
+##### Edge Detection
 1. Load building.jpg using "Load Image 1" button
 2. Select operations in sequence:
    - "3.1 Gaussian Blur" for initial smoothing
    - "3.2 Sobel X" for vertical edges
    - "3.3 Sobel Y" for horizontal edges
    - "3.4 Magnitude" for combined edge strength
-     
-#### Transform Operations
+
+##### Transform Operations
 1. Load Microsoft.png using "Load Image 1" button
 2. Apply transformations in sequence:
    - "4.1 Resize" (430x430 → 215x215)
    - "4.2 Translation" (+215 pixels X/Y)
    - "4.3 Rotation, Scaling" (45°, 0.5x)
    - "4.4 Shearing" (affine transform)
-     
+
+### 2. CIFAR10 Classification
+
+#### Training the Model
+1. Run the training script:
+```bash
+python train.py
+```
+- Trains VGG19 model for 30 epochs
+- Automatically saves:
+  - Model checkpoints
+  - Training progress
+  - Performance plots
+
+#### Using Classification Features
+1. Launch the application:
+```bash
+python main.py
+```
+
+2. Use the interface:
+   - "1. Show Train Images": View CIFAR10 samples
+   - "2. Show Model Structure": VGG19 architecture
+   - "3. Show Data Augmentation": Augmentation examples
+   - "4. Show Accuracy and Loss": Training progress
+   - "5. Inference": Classify new images
+
 ## Technical Details
 
 ### Project Structure
-
+```
 project/
 │
 ├── main.py           # Main application entry point
+├── train.py          # VGG19 training script
 ├── controller.py     # Main logic and image processing functions
 ├── UI.py            # PyQt5 UI definition
+│
+├── models/          # Saved model weights
+│   └── vgg19_final.pth
 │
 ├── images/          # Sample images directory
 │   ├── OpenCV.png
@@ -124,94 +172,54 @@ project/
 │   └── Microsoft.png
 │
 └── requirements.txt  # Project dependencies
+```
 
 ### Implementation Details
-#### Edge Detection Kernels
+
+#### 1. Image Processing
+##### Edge Detection Kernels
 - Gaussian Kernel (3x3):
-  
-  [[0.045 0.122 0.045]
-   [0.122 0.332 0.122]
-   [0.045 0.122 0.045]]
-  
+```
+[[0.045 0.122 0.045]
+ [0.122 0.332 0.122]
+ [0.045 0.122 0.045]]
+```
 - Sobel X Kernel:
-  
-  [[-1  0  1]
-   [-2  0  2]
-   [-1  0  1]]
-  
+```
+[[-1  0  1]
+ [-2  0  2]
+ [-1  0  1]]
+```
 - Sobel Y Kernel:
-  
-  [[ 1  2  1]
-   [ 0  0  0]
-   [-1 -2 -1]]
-  
+```
+[[ 1  2  1]
+ [ 0  0  0]
+ [-1 -2 -1]]
+```
+
+#### 2. Deep Learning
+- Model Architecture: VGG19
+  - Pretrained on ImageNet
+  - Modified for CIFAR10 (10 classes)
+  - Input Size: 32x32x3
+
+- Training Configuration:
+  - Optimizer: Adam
+  - Loss: CrossEntropyLoss
+  - Epochs: 30
+  - Batch Size: 32
+
+- Data Augmentation:
+  - Random Rotation
+  - Random Resized Crop
+  - Random Horizontal Flip
+
 ### Notes
 - All image paths should be relative to the project directory
 - Application uses OpenCV's default BGR color space
 - Smoothing operations use odd-numbered kernel sizes (2m+1)
 - Custom implementations avoid built-in OpenCV functions for edge detection
-
-### Basic Operation
-1. Run the application:
-```bash
-python main.py
-```
-
-2. Using the Interface:
-   - Use "Load Image" button to select images for processing or inference
-   - Click operation buttons to perform specific tasks
-   - Use trackbars in popup windows to adjust parameters
-   - Press 'Esc' to close popup windows
-
-### CIFAR10 Classification
-1. Training the Model:
-```bash
-python train.py
-```
-- This will train the VGG19 model for 30 epochs
-- Training progress and model weights will be saved automatically
-- Training history will be plotted and saved
-
-2. Using the Classification Interface:
-   - Click "1. Show Train Images" to view random CIFAR10 samples
-   - Click "2. Show Model Structure" to see VGG19 architecture
-   - Click "3. Show Data Augmentation" to see augmentation examples
-   - Click "4. Show Accuracy and Loss" to view training progress
-   - Click "5. Inference" to classify new images
-
-## Project Structure
-```
-project/
-│
-├── main.py           # Main application entry point
-├── train.py          # VGG19 training script
-│
-├── models/          # Saved model weights
-│   └── vgg19_final.pth
-│
-├── images/          # Sample images directory
-│   ├── inference.png
-│
-└── requirements.txt  # Project dependencies
-```
-
-## Implementation Details
-### Image Processing Features
-[Previous implementation details remain the same]
-
-### Deep Learning Implementation
-- Model: VGG19 (pretrained on ImageNet)
-- Dataset: CIFAR10 (10 classes)
-- Input Size: 32x32x3
-- Training Parameters:
-  - Optimizer: Adam
-  - Loss: CrossEntropyLoss
-  - Epochs: 30
-  - Batch Size: 32
-- Data Augmentation:
-  - Random Rotation
-  - Random Resized Crop
-  - Random Horizontal Flip
+- Model training time: ~8-12 hours on CPU, ~1-2 hours on GPU
 
 ## Controls
 - ESC: Close popup windows
