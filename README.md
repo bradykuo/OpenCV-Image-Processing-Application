@@ -5,27 +5,27 @@ A PyQt5-based application for demonstrating various image processing techniques 
 ## Features
 
 ### 1. Image Processing 
-1.1. Color Separation 
-1.2. Color Transformation 
-1.3. Color Detection 
-1.4. Blending 
+- 1.1. Color Separation 
+- 1.2. Color Transformation 
+- 1.3. Color Detection 
+- 1.4. Blending 
 
 ### 2. Image Smoothing 
-2.1. Gaussian Blur 
-2.2. Bilateral Filter 
-2.3. Median Filter 
+- 2.1. Gaussian Blur 
+- 2.2. Bilateral Filter 
+- 2.3. Median Filter 
 
 ### 3. Edge Detection
-3.1. Gaussian Blur
-3.2. Sobel X (Vertical Edge Detection)
-3.3. Sobel Y (Horizontal Edge Detection)
-3.4. Magnitude
+- 3.1. Gaussian Blur
+- 3.2. Sobel X (Vertical Edge Detection)
+- 3.3. Sobel Y (Horizontal Edge Detection)
+- 3.4. Magnitude
 
 ### 4. Transforms
-4.1. Resize
-4.2. Translation
-4.3. Rotation & Scaling
-4.4. Shearing
+- 4.1. Resize
+- 4.2. Translation
+- 4.3. Rotation & Scaling
+- 4.4. Shearing
 
 ## Requirements
 
