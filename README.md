@@ -221,6 +221,10 @@ project/
 - Custom implementations avoid built-in OpenCV functions for edge detection
 - Model training time: ~8-12 hours on CPU, ~1-2 hours on GPU
 
+## Reference
+
+https://reurl.cc/MjaKbk
+
 ## Controls
 - ESC: Close popup windows
 - Trackbars: Adjust parameters for image processing operations
