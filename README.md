@@ -1,5 +1,5 @@
-# OpenCV Image Processing & Deep Learning Application
-A PyQt5-based application for demonstrating image processing techniques using OpenCV and deep learning classification using VGG19 on CIFAR10 dataset.
+# OpenCV Image Processing Application
+A PyQt5-based application for demonstrating image processing techniques using OpenCV.
 
 ## Features
 ### 1. Image Processing 
@@ -25,13 +25,6 @@ A PyQt5-based application for demonstrating image processing techniques using Op
 - 4.3. Rotation & Scaling
 - 4.4. Shearing
 
-### 5. CIFAR10 Classification using VGG19
-- 5.1. Display Training Images
-- 5.2. Model Structure Visualization
-- 5.3. Data Augmentation Demonstration
-- 5.4. Training Progress Visualization
-- 5.5. Image Classification Inference
-
 ## Requirements
 
 ### Python Environment
@@ -41,11 +34,6 @@ A PyQt5-based application for demonstrating image processing techniques using Op
 - opencv-contrib-python (3.4.2.17)
 - Matplotlib 3.1.1
 - PyQt5 (5.15.1)
-
-### Deep Learning Dependencies
-- PyTorch
-- torchvision
-- torchsummary
 
 ### Additional Dependencies
 - numpy
@@ -58,9 +46,6 @@ A PyQt5-based application for demonstrating image processing techniques using Op
 - beauty.png (for smoothing operations)
 - building.jpg (for edge detection)
 - Microsoft.png (for transforms)
-
-#### Classification
-- Any test images for inference (supports .jpg, .jpeg, .png)
 
 ## Installation and Setup
 
@@ -90,7 +75,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-### 1. Image Processing Operations
+### Image Processing Operations
 
 #### Basic Operation
 1. Run the application:
@@ -123,32 +108,6 @@ python main.py
    - "4.3 Rotation, Scaling" (45°, 0.5x)
    - "4.4 Shearing" (affine transform)
 
-### 2. CIFAR10 Classification
-
-#### Training the Model
-1. Run the training script:
-```bash
-python train.py
-```
-- Trains VGG19 model for 30 epochs
-- Automatically saves:
-  - Model checkpoints
-  - Training progress
-  - Performance plots
-
-#### Using Classification Features
-1. Launch the application:
-```bash
-python main.py
-```
-
-2. Use the interface:
-   - "1. Show Train Images": View CIFAR10 samples
-   - "2. Show Model Structure": VGG19 architecture
-   - "3. Show Data Augmentation": Augmentation examples
-   - "4. Show Accuracy and Loss": Training progress
-   - "5. Inference": Classify new images
-
 ## Technical Details
 
 ### Project Structure
@@ -156,12 +115,8 @@ python main.py
 project/
 │
 ├── main.py           # Main application entry point
-├── train.py          # VGG19 training script
 ├── controller.py     # Main logic and image processing functions
 ├── UI.py            # PyQt5 UI definition
-│
-├── models/          # Saved model weights
-│   └── vgg19_final.pth
 │
 ├── images/          # Sample images directory
 │   ├── OpenCV.png
@@ -176,8 +131,7 @@ project/
 
 ### Implementation Details
 
-#### 1. Image Processing
-##### Edge Detection Kernels
+#### Edge Detection Kernels
 - Gaussian Kernel (3x3):
 ```
 [[0.045 0.122 0.045]
@@ -197,33 +151,11 @@ project/
  [-1 -2 -1]]
 ```
 
-#### 2. Deep Learning
-- Model Architecture: VGG19
-  - Pretrained on ImageNet
-  - Modified for CIFAR10 (10 classes)
-  - Input Size: 32x32x3
-
-- Training Configuration:
-  - Optimizer: Adam
-  - Loss: CrossEntropyLoss
-  - Epochs: 30
-  - Batch Size: 32
-
-- Data Augmentation:
-  - Random Rotation
-  - Random Resized Crop
-  - Random Horizontal Flip
-
 ### Notes
 - All image paths should be relative to the project directory
 - Application uses OpenCV's default BGR color space
 - Smoothing operations use odd-numbered kernel sizes (2m+1)
 - Custom implementations avoid built-in OpenCV functions for edge detection
-- Model training time: ~8-12 hours on CPU, ~1-2 hours on GPU
-
-## Reference
-
-https://reurl.cc/MjaKbk
 
 ## Controls
 - ESC: Close popup windows
@@ -234,6 +166,4 @@ This project is available under the MIT License. See the LICENSE file for more d
 
 ## Acknowledgments
 - Based on OpenCV computer vision library
-- Uses PyTorch deep learning framework
-- CIFAR10 dataset provided by the Canadian Institute For Advanced Research
-- Created as part of image processing and deep learning coursework
+- Created as part of image processing coursework
