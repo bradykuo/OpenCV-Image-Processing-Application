@@ -187,7 +187,7 @@ I2 = (R+G+B)/3                  (Average weighted)
 ```
 
 ## License
-This project is available under the MIT License. See the LICENSE file for more details.
+This project is available for academic and educational purposes.
 
 ## Acknowledgments
 - Based on OpenCV computer vision library
