@@ -186,6 +186,9 @@ I1 = 0.07*B + 0.72*G + 0.21*R  (OpenCV function)
 I2 = (R+G+B)/3                  (Average weighted)
 ```
 
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
 ## License
 This project is available for academic and educational purposes.
 
