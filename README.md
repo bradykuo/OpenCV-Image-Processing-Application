@@ -1,5 +1,6 @@
 # OpenCV Image Processing Application
 A PyQt5-based application for demonstrating image processing techniques using OpenCV.
+（成大資工系｜影像處理、電腦視覺及深度學習概論｜作業）
 
 ## Features
 ### 1. Image Processing 
